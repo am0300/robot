@@ -1,0 +1,12 @@
+{
+  "_warning": "EXAMPLE ONLY. Replace with the source dataset's actual joint order, units, calibration offsets, and gripper convention. Do not confirm until verified.",
+  "calibration_confirmed": false,
+  "state_to_policy": {
+    "scale": [1, 1, 1, 1, 1, 1],
+    "bias": [0, 0, 0, 0, 0, 0]
+  },
+  "action_to_sim": {
+    "scale": [1, 1, 1, 1, 1, 1],
+    "bias": [0, 0, 0, 0, 0, 0]
+  }
+}

@@ -1,0 +1,49 @@
+name: act-gazebo-ros2
+services:
+  gazebo:
+    build: {context: ., dockerfile: docker/gazebo/Dockerfile}
+    network_mode: host
+    init: true
+    environment:
+      DISPLAY: ${DISPLAY:?Start from a graphical Linux desktop}
+      XAUTHORITY: /tmp/.docker.xauth
+      GZ_PARTITION: act_pick_place
+      QT_QPA_PLATFORM: xcb
+      QT_X11_NO_MITSHM: '1'
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - ./.docker.xauth:/tmp/.docker.xauth:ro
+      - ./worlds:/workspace/worlds:ro
+    command: [gz, sim, -r, -v, '3', /workspace/worlds/pick_place.sdf]
+
+  ros2:
+    build: {context: ., dockerfile: docker/ros2/Dockerfile}
+    network_mode: host
+    ipc: host
+    init: true
+    environment:
+      GZ_PARTITION: act_pick_place
+      ROS_DOMAIN_ID: '42'
+      RMW_IMPLEMENTATION: rmw_fastrtps_cpp
+      ROBOT_API_HOST: '127.0.0.1'
+      ROBOT_API_PORT: '8765'
+    depends_on: [gazebo]
+
+  lerobot:
+    build: {context: ., dockerfile: docker/lerobot/Dockerfile}
+    network_mode: host
+    init: true
+    shm_size: 4gb
+    gpus: all
+    environment:
+      ROBOT_API_URL: http://127.0.0.1:8765
+      HF_HOME: /cache/huggingface
+      PYTHONUNBUFFERED: '1'
+    volumes:
+      - ./workspace:/workspace:ro
+      - ./datasets:/datasets:ro
+      - ./outputs:/outputs
+      - ./hf_cache:/cache/huggingface
+    depends_on: [ros2]
+    command: [sleep, infinity]

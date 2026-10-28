@@ -1,0 +1,6 @@
+{
+  "_description": "Replace the empty lists with at least 3 fit and 2 validation pairs. Every pair must represent the SAME physically equivalent six-joint pose, in the listed order. This template contains NO invented calibration data.",
+  "joint_names": ["shoulder_pan", "shoulder_lift", "elbow_flex", "wrist_flex", "wrist_roll", "gripper"],
+  "fit": [],
+  "validate": []
+}

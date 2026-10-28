@@ -1,0 +1,55 @@
+- ros_topic_name: /joint_states
+  gz_topic_name: /arm/joint_states
+  ros_type_name: sensor_msgs/msg/JointState
+  gz_type_name: gz.msgs.Model
+  direction: GZ_TO_ROS
+  publisher_queue: 5
+
+- ros_topic_name: /camera/front/image_raw
+  gz_topic_name: /camera/front/image_raw
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: gz.msgs.Image
+  direction: GZ_TO_ROS
+  publisher_queue: 2
+
+- ros_topic_name: /clock
+  gz_topic_name: /clock
+  ros_type_name: rosgraph_msgs/msg/Clock
+  gz_type_name: gz.msgs.Clock
+  direction: GZ_TO_ROS
+
+- ros_topic_name: /arm/cmd/shoulder_pan
+  gz_topic_name: /arm/cmd/shoulder_pan
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /arm/cmd/shoulder_lift
+  gz_topic_name: /arm/cmd/shoulder_lift
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /arm/cmd/elbow_flex
+  gz_topic_name: /arm/cmd/elbow_flex
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /arm/cmd/wrist_flex
+  gz_topic_name: /arm/cmd/wrist_flex
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /arm/cmd/wrist_roll
+  gz_topic_name: /arm/cmd/wrist_roll
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: /arm/cmd/gripper
+  gz_topic_name: /arm/cmd/gripper
+  ros_type_name: std_msgs/msg/Float64
+  gz_type_name: gz.msgs.Double
+  direction: ROS_TO_GZ
